@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+       
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                fetch(`https://geocode.xyz/${lat},${lon}?geoit=json`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('select-pais').value = data.country.toUpperCase();
+                    });
+            });
+        }
+    });
+    
+    </script>   
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Tienda</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+   
+}
+
+
+header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+}
+
+.producto {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    cursor: move;
+}
+
+.producto img {
+    width: 150px;
+    height: 150px;
+}
+
+.cesta {
+    border: 2px dashed #ddd;
+    padding: 20px;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+}
+
+.cesta-container {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+</style>
+
+
+<body>
+    <header>
+        <h1>Bienvenido a nuestra Tienda</h1>
+    </header>
+    <span style="cursor: pointer"></span>
+    <main>
+        <section class="productos">
+            <h2>Productos</h2>
+            <div class="producto" draggable="true" id="producto1">
+                <img src="zapatos1.jpg" alt="Producto 1">
+                <p>Producto 1</p>
+                <p>Q150.00</p>
+            </div>
+            <div class="producto" draggable="true" id="producto2">
+                <img src="oxford.jfif" alt="Producto 2">
+                <p>Producto 2</p>
+                <p>Q200.00</p>
+            </div>
+            <div class="producto" draggable="true" id="producto2">
+                <img src="Zapatos cuero Marrón.jfif" alt="Producto 2">
+                <p>Producto 3</p>
+                <p>Q200.00</p>
+            </div>
+            <div class="producto" draggable="true" id="producto2">
+                <img src="zapatosbespoke.webp" alt="Producto 2">
+                <p>Producto 4</p>
+                <p>Q200.00</p>
+            </div>
+        </section>
+        <section class="cesta">
+            <h2>Cesta de la Compra</h2>
+            <div id="cesta" class="cesta-container">
+                <p>Arrastra los productos aquí</p>
+            </div>
+            
+        </section>
+    </main>
+    <footer>
+        <a href="index.html">Inicio</a> | <a href="ConfirmaCompra.html">Confirmar Compra</a>
+        <p>&copy; 2024 Carrito de Compras. Todos los derechos reservados.</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
